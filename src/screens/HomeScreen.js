@@ -18,6 +18,7 @@ export default function HomeScreen() {
       try {
         const result = await axios.get('https://amazon-mern-backendd.onrender.com/api/products');
         setProducts(result.data);
+setLoading(false);
       } catch (err) {
         setError(err.message);
       } finally {
