@@ -14,7 +14,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
+     
       try {
         const result = await axios.get('https://amazon-mern-backendd.onrender.com/api/products');
         setProducts(result.data);
