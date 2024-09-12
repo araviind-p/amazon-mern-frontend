@@ -78,9 +78,9 @@ export default function ProductScreen() {
             <div className='flex justify-center items-center'>
                 <Row>
                     <Col md={6} className='flex justify-center mb-3'>
-                        <img
-                            style={{ maxWidth: '100%', height: '80vh' }}
-                            className='img-large'
+                        <img 
+                            style={{ maxWidth: '100%'}}
+                            className='max-h-[400px] md:max-h-[600px]'
                             src={product.image}
                             alt={product.name}
                         ></img>
