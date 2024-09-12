@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { getError } from '../utils';
-import { toast } from 'react-toastify';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 function reducer(state, action) {
     switch (action.type) {
@@ -63,7 +63,7 @@ export default function ProfileScreen() {
     };
 
     return (
-        <div className='container my-5'>
+        <div className='container my-5 text-gray-300'>
             <Helmet>
                 <title>User Profile</title>
             </Helmet>

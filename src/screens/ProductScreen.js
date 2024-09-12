@@ -75,9 +75,9 @@ export default function ProductScreen() {
         ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-            <div>
+            <div className='flex justify-center items-center'>
                 <Row>
-                    <Col md={6}>
+                    <Col md={6} className='flex justify-center mb-3'>
                         <img
                             style={{ maxWidth: '100%', height: '80vh' }}
                             className='img-large'
@@ -85,7 +85,7 @@ export default function ProductScreen() {
                             alt={product.name}
                         ></img>
                     </Col>
-                    <Col md={3}>
+                    <Col md={3} className='mb-3 bg-[#0f172a] rounded-lg'>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <Helmet>
@@ -108,7 +108,7 @@ export default function ProductScreen() {
                             </ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col md={3}>
+                    <Col md={3} className='bg-[#0f172a] rounded-lg'>
                         <Card>
                             <Card.Body>
                                 <ListGroup variant='flush'>

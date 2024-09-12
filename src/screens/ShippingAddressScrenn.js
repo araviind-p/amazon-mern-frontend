@@ -53,12 +53,12 @@ export default function ShippingAddressScreen() {
     };
 
     return (
-        <div>
+        <div className='text-gray-300'>
             <Helmet>
                 <title>Shipping Address</title>
             </Helmet>
             <CheckoutSteps step1 step2 />
-            <Container className='my-5'>
+            <Container className='my-5 w-full sm:w-4/6'>
                 <h1 className='my-3'>Shipping Address</h1>
                 <Form onSubmit={submitHandler}>
                     <Form.Group className='mb-3' controlId='fullName'>

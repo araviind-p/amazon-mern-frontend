@@ -8,8 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { Store } from './../Store';
-import { toast } from 'react-toastify';
 import { getError } from '../utils';
+import { toast } from 'react-hot-toast';
 
 function SigninScreen() {
     const navigate = useNavigate();
@@ -35,6 +35,7 @@ function SigninScreen() {
             );
             ctxDispatch({ type: 'USER_SIGNIN', payload: data });
             localStorage.setItem('userInfo', JSON.stringify(data));
+            toast.success("Login success")
             navigate(redirect || '/');
         } catch (err) {
             toast.error(getError(err));
@@ -54,10 +55,12 @@ function SigninScreen() {
             </Helmet>
             <Row className='justify-content-md-center'>
                 <Col xs={12} md={6}>
-                    <h1 className='mb-3'>Sign In</h1>
+                    <div className='w-full flex justify-center items-center text-2xl'>
+                    <h1 className='mb-3 text-gray-300'>Sign In</h1>
+                    </div>
                     <Form onSubmit={submitHandler}>
                         <Form.Group className='mb-3' controlId='email'>
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label className='text-gray-300'>Email</Form.Label>
                             <Form.Control
                                 type='email'
                                 placeholder='Enter your email'
@@ -66,7 +69,7 @@ function SigninScreen() {
                             />
                         </Form.Group>
                         <Form.Group className='mb-3' controlId='password'>
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label className='text-gray-300'>Password</Form.Label>
                             <Form.Control
                                 type='password'
                                 placeholder='Enter your password'
@@ -79,9 +82,9 @@ function SigninScreen() {
                                 Sign In
                             </Button>
                         </div>
-                        <div className='mb-3'>
+                        <div className='mb-3 text-gray-300'>
                             New customer?{' '}
-                            <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
+                            <Link to={`/signup?redirect=${redirect}`} className='text-blue-400'>Create your account</Link>
                         </div>
                     </Form>
                 </Col>

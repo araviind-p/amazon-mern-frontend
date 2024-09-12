@@ -46,6 +46,9 @@ function reducer(state, action) {
         case 'USER_SIGNIN':
             return { ...state, userInfo: action.payload }
         case 'USER_SIGNOUT':
+            localStorage.removeItem("cartItems")
+            localStorage.removeItem("email")
+            localStorage.removeItem("token")
             return {
                 ...state,
                 userInfo: null,

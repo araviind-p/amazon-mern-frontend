@@ -14,11 +14,11 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-     
+
       try {
         const result = await axios.get('https://amazon-mern-backendd.onrender.com/api/products');
         setProducts(result.data);
-setLoading(false);
+        setLoading(false);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -30,11 +30,13 @@ setLoading(false);
   }, []);
 
   return (
-    <div>
+    <div >
       <Helmet>
         <title>Amazon</title>
       </Helmet>
-      <h1 className="mb-4">Featured Products</h1>
+      <div className='w-full flex justify-center'>
+        <h1 className="mb-4 text-[#e2e8f0] text-2xl">Featured Products</h1>
+      </div>
       <div className="products">
         {loading ? (
           <LoadingBox />
@@ -43,8 +45,10 @@ setLoading(false);
         ) : (
           <Row>
             {products.map((product) => (
-              <Col key={product.slug} xs={12} sm={6} md={4} lg={3} className="mb-3">
-                <Product product={product} />
+              <Col key={product.slug}>
+                <div className='mb-3 w-full flex justify-start flex-wrap'>
+                  <Product product={product} />
+                </div>
               </Col>
             ))}
           </Row>

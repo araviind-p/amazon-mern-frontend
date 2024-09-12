@@ -10,8 +10,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { getError } from './../utils';
-import { toast } from 'react-toastify';
 import LoadingBox from './../components/LoadingBox';
+import { toast } from 'react-hot-toast';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -65,6 +65,7 @@ export default function PlaceOrderScreen() {
             ctxDispatch({ type: 'CART_CLEAR' });
             dispatch({ type: 'CREATE_SUCCESS' });
             localStorage.removeItem('cartItems');
+            toast.success("Order placed")
             navigate(`/order/${data.order._id}`);
         } catch (err) {
             dispatch({ type: 'CREATE_FAIL' });
@@ -82,9 +83,9 @@ export default function PlaceOrderScreen() {
         <div>
             <CheckoutSteps step1 step2 step3 step4 />
             <Helmet>
-                <title>Preview Order</title>
+                <title >Preview Order</title>
             </Helmet>
-            <h1 className='my-3'>Preview Order</h1>
+            <h1 className='my-3 text-gray-300'>Preview Order</h1>
             <Row>
                 <Col md={8}>
                     <Card className='mb-3'>
@@ -110,7 +111,7 @@ export default function PlaceOrderScreen() {
                             <Link to='/payment'>Edit</Link>
                         </Card.Body>
                     </Card>
-                    <Card>
+                    <Card className='mb-3 sm:mb-0'>
                         <Card.Body>
                             <Card.Title>Items</Card.Title>
                             <ListGroup variant='flush'>
@@ -138,7 +139,7 @@ export default function PlaceOrderScreen() {
                     </Card>
                 </Col>
                 <Col md={4}>
-                    <Card>
+                    <Card className='mb-3 sm:mb-0'>
                         <Card.Body>
                             <Card.Title>Order Summary</Card.Title>
                             <ListGroup variant='flush'>

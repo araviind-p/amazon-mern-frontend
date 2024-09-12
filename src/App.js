@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
@@ -20,6 +18,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -29,23 +28,30 @@ function App() {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
-    window.location.href = "/signin";
+    toast.success("User signed out")
+    setTimeout(() => {
+      window.location.href = "/signin";
+    }, 400)
   }
 
   return (
     <BrowserRouter>
-      <div className='d-flex flex-column site-container'>
-        <ToastContainer position='bottom-center' limit={1} />
-        <header>
-          <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom">
+
+      <div className='d-flex flex-column site-container bg-[#0f172a]'>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
+        <header className='sticky top-0 z-999'>
+          <Navbar bg="dark" variant="dark" expand="lg" className="navbar-custom sticky top-0 z-9999999">
             <Container>
-              <LinkContainer to="/">
+              <LinkContainer to="/" className='ml-1'>
                 <Navbar.Brand>amazon</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto">
-                  <Link to="/cart" className="nav-link">
+                  <Link to="/cart" className="nav-link ml-4 sm:ml-0">
                     Cart
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
@@ -54,7 +60,7 @@ function App() {
                     )}
                   </Link>
                   {userInfo ? (
-                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown" className='mr-4 ml-4 sm:mr-14'>
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -95,11 +101,14 @@ function App() {
               <Route path='/shipping' element={<ShippingAddressScrenn />} />
               <Route path='/payment' element={<PaymentMethodScreen />} />
               <Route path='/' element={<HomeScreen />} />
+
             </Routes>
+
           </Container>
         </main>
         <footer>
-          <div className='text-center'>All rights reserved</div>
+
+          <div className='text-center text-gray-300 my-4 sm:my-0'>All rights reserved</div>
         </footer>
       </div>
     </BrowserRouter>
